@@ -40,7 +40,7 @@ function App() {
 
   const handleCaracter = (caracterValue) => {
     console.log("Caracter seleccionado from child", caracterValue);
-    //callRickApi(caracterValue)
+    callRickApi(`?name=${caracterValue}`)
   }
   
   return (
