@@ -1,0 +1,58 @@
+.name-caracter {
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+ul.list-options {
+    padding-left: 0;
+    float: left;
+    width: 100%;
+}
+
+ul.list-options li {
+    list-style: none;
+    float: left;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+ul.list-options li p.item-title {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 14px;
+    white-space: nowrap;
+    text-align: left;
+}
+
+ul.list-options li p {
+    font-size: 13px;
+    text-align: right;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.container-caracter-list > div.Dead {
+    background: rgb(51, 51, 51);
+}
+
+.container-caracter-list > div.Dead * {
+    color: white;
+}
+
+.container-caracter-list > div.Dead li {
+    border-bottom: 1px solid rgb(255, 152, 0);
+}
+
+.container-caracter-list > div.Dead li p.item-title {
+    color: rgb(255, 152, 0);
+}
+
+ul.list-options li:nth-last-child(1) {
+    border: none;
+}

@@ -1,0 +1,29 @@
+.App {
+  display: block;
+  margin: 0 auto;
+  width: 1280px;
+}
+
+.container-caracter-list {
+  float: left;
+  width: 100%;
+}
+
+.container-caracter-list > div {
+  float: left;
+  width: calc(25% - 8px);
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.container-caracter-list > div:nth-of-type(4n) {
+  margin-right: 0px;
+}
+
+.title-container h1 {
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 20px;
+  font-size: 24px;
+}
