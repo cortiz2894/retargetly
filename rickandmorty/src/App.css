@@ -27,3 +27,15 @@
   padding-bottom: 20px;
   font-size: 24px;
 }
+
+.loader {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  height: 300px;
+  align-items: center;
+}
+
+.loader img{
+  width: 80px;
+}

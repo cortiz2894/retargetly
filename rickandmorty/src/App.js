@@ -10,8 +10,7 @@ function App() {
 
   //States
   const [caracters, setCaracters] = useState(null);
-  const [filter, setFilter] = useState(null);
-
+  const [loading, setLoading] = useState(null);
 
   useEffect(() => {
     if(caracters == null){
@@ -40,6 +39,7 @@ function App() {
 
   const handleCaracter = (caracterValue) => {
     console.log("Caracter seleccionado from child", caracterValue);
+    setCaracters(null)
     callRickApi(`?name=${caracterValue}`)
   }
   
@@ -62,7 +62,7 @@ function App() {
         </div>
       ):(
         <div className="loader">
-          cargando...
+          <img src={require('../src/assets/loading.gif')} />
         </div>
       )}
       
