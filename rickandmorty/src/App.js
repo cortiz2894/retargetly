@@ -5,6 +5,7 @@ import './App.css';
 
 import CardContainer from './components/CardContainer';
 import InputSuggestions from './components/Input';
+import SimpleSelect from './components/Select'
 
 function App() {
 
@@ -53,6 +54,7 @@ function App() {
         <InputSuggestions
           onSelectCaracter={handleCaracter}
         ></InputSuggestions>
+        <SimpleSelect></SimpleSelect>
       </div>
       {caracters ? (
         <div className="container-caracter-list">
