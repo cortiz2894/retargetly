@@ -1,17 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
+//Material UI
+
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+
 //Componentes
 
 import CardContainer from './components/CardContainer';
 import InputSuggestions from './components/Input';
 import SimpleSelect from './components/Select'
 
+
+const useStyles = makeStyles(theme => ({
+  button: {
+    margin: theme.spacing(1),
+  },
+}));
+
 function App() {
+
+  const classes = useStyles();
 
   //States
   const [caracters, setCaracters] = useState(null);
-  const [loading, setLoading] = useState(null);
+  const [filtersState, setfiltersState] = useState(null)
+  const [noResults, setNoResults] = useState(false)
+
+  //Options
+
+  let species = ["Alien", "Human"];
+  let gender = ["Female", "Male", "Genderless", "Unknown"];
 
   useEffect(() => {
     if(caracters == null){
@@ -21,27 +41,70 @@ function App() {
 
   //Functions
   const callRickApi = (filter) => {
-    fetch(`/api/character/${filter}`, {
+    setCaracters(false)
+    let parameters = '';
+    if (filter != undefined) {
+      if (filter.specie) {
+          parameters = parameters + `&species=${filter.specie}`;
+      }
+      if (filter.gender) {
+        parameters = parameters + `&gender=${filter.gender}`;
+      }
+      if (filter.name) {
+        parameters = parameters + `&name=${filter.name}`;
+      }
+    }
+    fetch(`/api/character/?${parameters}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json', 'access-control-allow-origin': '*'},
     })
       .then(response => {
-        return response.json();
+        console.log("estado de la respuesta: ", response.status);
+        if(response.status != 200){
+          setNoResults(true);
+        }else{
+          return response.json();
+        }
       })
       .then(data => {
         if (data) {
-          // console.log("Respuesta de API", data);
+          setNoResults(false);
           setCaracters(data.results);
         } else {
           console.log('Error en consulta de API');
         }
       });
   }
+  const handleFilterSpecie = (value) => {
+    const filters = {
+      ...filtersState, 
+      specie: value, 
+    };
+    setfiltersState(filters);
+    callRickApi(filters);
+  }
 
-  const handleCaracter = (caracterValue) => {
-    console.log("Caracter seleccionado from child", caracterValue);
-    setCaracters(null)
-    callRickApi(`?name=${caracterValue}`)
+  const handleFilterCaracter = (value) => {
+    const filters = {
+      ...filtersState, 
+      name: value, 
+    };
+    setfiltersState(filters);
+    callRickApi(filters);
+  }
+
+  const handleFilterGender = (value) => {
+    const filters = {
+      ...filtersState, 
+      gender: value, 
+    };
+    setfiltersState(filters);
+    callRickApi(filters);
+  }
+  
+
+  const handleResetFilter = () => {
+    callRickApi();
   }
   
   return (
@@ -51,24 +114,50 @@ function App() {
       </div>
       <div className="filtros-container">
         <p>Filtros:</p>
-        <InputSuggestions
-          onSelectCaracter={handleCaracter}
-        ></InputSuggestions>
-        <SimpleSelect></SimpleSelect>
-      </div>
-      {caracters ? (
-        <div className="container-caracter-list">
-            {caracters.map(function(caracter, i){
-              return <CardContainer info={caracter}></CardContainer>
-            })}
+        <div className="container">
+          <InputSuggestions
+            onSelectCaracter={handleFilterCaracter}
+          >
+          </InputSuggestions>
+          <SimpleSelect
+            onSelect={handleFilterSpecie}
+            options={species}
+            titleFilter={"Species"}
+          >
+          </SimpleSelect>
+          <SimpleSelect
+            onSelect={handleFilterGender}
+            options={gender}
+            titleFilter={"Gender"}
+          >
+          </SimpleSelect>
+          <Button
+            variant="contained"
+            color="secondary"
+            className={classes.button}
+            onClick={handleResetFilter}
+          >
+            Quitar filtros
+          </Button>
         </div>
+      </div>
+      {noResults ?(
+        <div className="no-result">NO SE ENCONTRARON RESULTADOS</div>
       ):(
-        <div className="loader">
-          <img src={require('../src/assets/loading.gif')} />
+        <div>
+          {caracters ? (
+            <div className="container-caracter-list">
+                {caracters.map(function(caracter, i){
+                  return <CardContainer info={caracter}></CardContainer>
+                })}
+            </div>
+          ):(
+            <div className="loader">
+              <img src={require('../src/assets/loading.gif')} />
+            </div>
+          )}
         </div>
       )}
-      
-      
     </div>
   );
 }

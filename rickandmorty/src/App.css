@@ -16,6 +16,20 @@
   margin-bottom: 10px;
 }
 
+.no-result {
+  width: 100%;
+  float: left;
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+  color: #a9a9a9;
+  font-size: 20px;
+  font-family: Roboto;
+  height: 200px;
+}
+
 .container-caracter-list > div:nth-of-type(4n) {
   margin-right: 0px;
 }
@@ -38,4 +52,64 @@
 
 .loader img{
   width: 80px;
+}
+
+button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.makeStyles-button-1.MuiButton-containedSecondary {
+  position: absolute;
+  right: 0;
+}
+
+.filtros-container .container {
+  display: flex;
+  position: relative;
+}
+
+@media(max-width: 1280px){
+  .App {
+    width: 100%;
+    padding-left: 25px;
+    padding-right: 25px;
+    float: left;
+    box-sizing: border-box; 
+  }
+}
+
+@media(max-width: 768px) {
+  .container-caracter-list > div {
+    width: calc(50% - 10px);
+  }
+  .container-caracter-list > div {
+    width: calc(50% - 10px);
+  }
+
+  button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.makeStyles-button-1.MuiButton-containedSecondary {
+      position: fixed;
+      bottom: 10px;
+      z-index: 9;
+      right: 25px;
+  }
+
+  .filtros-container .container > div {
+      width: 30%;
+      margin: 0;
+      padding-right: 10px;
+  }
+
+  .filtros-container .container > div input.react-autosuggest__input {
+      width: 100%;
+  }
+}
+
+@media(max-width: 480px) {
+  .filtros-container .container {
+    flex-direction: column;
+  }
+  .filtros-container .container > div {
+    width: 100%;
+  }
+  .container-caracter-list > div {
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
 }

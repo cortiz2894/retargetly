@@ -1,0 +1,77 @@
+input.react-autosuggest__input {
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+    padding-bottom: 6px;
+    padding-top: 7px;
+    font-family: Roboto;
+}
+
+input.react-autosuggest__input:focus {
+    box-shadow: none;
+    outline: none;
+}
+.filtros-container {
+    margin-bottom: 20px;
+}
+
+
+input.react-autosuggest__input {
+    font-size: 1rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.00938em;
+    margin-top: 15px;
+}
+
+input.react-autosuggest__input::placeholder {
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.react-autosuggest__container {
+    margin-right: 15px;
+}
+
+.react-autosuggest__container ul.react-autosuggest__suggestions-list {
+    padding-left: 0;
+}
+
+.react-autosuggest__container ul.react-autosuggest__suggestions-list li {
+    /* width: 100%; */
+    list-style: none;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.react-autosuggest__container ul.react-autosuggest__suggestions-list li div {
+    font-family: Roboto;
+    font-weight: 400;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    overflow: hidden;
+}
+
+.react-autosuggest__container > div:nth-of-type(1) {
+    position: absolute;
+    z-index: 1;
+    background: white;
+    box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
+    border-radius: 4px;
+    top: 65px;
+    max-height: 400px;
+    overflow: auto;
+    max-width: 220px;
+    overflow-x: hidden;
+    width: 220px;
+}
+
+.react-autosuggest__container ul.react-autosuggest__suggestions-list li:hover {
+    background: #c3c3c34f;
+}

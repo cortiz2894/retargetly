@@ -1,0 +1,9 @@
+.filter-select > div {
+    width: 100%;
+}
+
+.filter-select {
+    width: 200px;
+    position: relative;
+    margin-right: 15px;
+}
